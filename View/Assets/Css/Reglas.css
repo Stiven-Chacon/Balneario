@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Diseño de las 3 lineas que aparece en el MENU */
+/* Posicion, tamaño */
+.menu-icon:checked + label,
+.menu-icon:not(:checked) + label{
+  position: absolute;
+  top: 63px;
+  right: 75px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+/*Animacion y Color De La Primera y la ultima linea */
+.menu-icon:checked + label:before,
+.menu-icon:not(:checked) + label:before{
+  position: absolute;
+  content: '';
+  display: block;
+  width: 30px;
+  height: 20px;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  border-top: 2px solid #ececee;
+  border-bottom: 2px solid #ececee;
+  transition: border-width 100ms 1500ms ease, 
+              top 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1), 
+              background-color 200ms ease,
+              transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+/*Animacion y Color De la linea de la mitad  */
+.menu-icon:checked + label:after,
+.menu-icon:not(:checked) + label:after{
+  position: absolute;
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  z-index: 20;
+  top: 10px;
+  right: 4px;
+  background-color: #ececee;
+  margin-top: -1px;
+  transition: width 100ms 1750ms ease, 
+              right 100ms 1750ms ease,
+              margin-top 100ms ease, 
+              transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* Diseño De La X para cerrar el menú */
+.menu-icon:checked + label:before{
+  top: 10px;
+  transform: rotate(45deg);
+  height: 2px;
+  background-color: #ffffff;
+  border-width: 0;
+  transition: border-width 100ms 340ms ease, 
+              top 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1), 
+              background-color 200ms 500ms ease,
+              transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:after{
+  width: 30px;
+  margin-top: 0;
+  right: 0;
+  transform: rotate(-45deg);
+  transition: width 100ms ease,
+              right 100ms ease,  
+              margin-top 100ms 500ms ease, 
+              transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* Diseño Del Menu, sombra, tamaño y forma */
+.nav{
+  position: absolute;
+  top: 33px;
+  right: 50px;
+  display: block;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  margin: 0;
+  z-index: 9;
+  overflow: hidden;
+  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.705);
+  background-color: #00059376;
+  animation: border-transform 7s linear infinite;
+  transition: top 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),  
+              right 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+              transform 250ms 1100ms ease,
+              width 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* Efecto De Movimiento Del Menu */
+@keyframes border-transform{
+    0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; } 
+  14% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; } 
+  28% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; } 
+  42% { border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%; } 
+  56% { border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%; } 
+  70% { border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%; } 
+  84% { border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%; } 
+}
+/* Efecto Al Abrir El Menú */
+.menu-icon:checked ~ .nav {
+    animation-play-state: paused;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 200%;
+    height: 200%;
+    transition: top 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),  
+                right 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
+                transform 250ms 700ms ease,
+                width 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1),
+                height 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+/* Posicion De los hipervinculos */
+.nav ul{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: 6;
+  text-align: center;
+  transform: translateY(-50%);
+  list-style: none;
+}
+/* Animacion Al Aparecer Los Hipervinculos */
+.nav ul li{
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+  list-style: none;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition: all 250ms linear;
+}
+.nav ul li:nth-child(1){
+  transition-delay: 200ms;
+}
+.nav ul li:nth-child(2){
+  transition-delay: 150ms;
+}
+.nav ul li:nth-child(3){
+  transition-delay: 100ms;
+}
+.nav ul li:nth-child(4){
+  transition-delay: 50ms;
+}
+/* Diseño de los hipervinculos */
+.nav ul li a{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7vh;
+  line-height: 1.2;
+  font-weight: 700;
+  display: inline-block;
+  position: relative;
+  color: #ffffff;
+  transition: all 250ms linear;
+}
+.nav ul li a:hover{
+  text-decoration: none;
+  color: #ffeba7;
+}
+.nav ul li a:after{
+  display: block;
+  position: absolute;
+  top: 50%;
+  content: '';
+  height: 2vh;
+  margin-top: -1vh;
+  width: 0;
+  left: 0;
+  background-color: #354637;
+  opacity: 0.8;
+  transition: width 250ms linear;
+}
+.nav ul li a:hover:after{
+  width: 100%;
+}
+
+
+.menu-icon:checked ~ .nav  ul li {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 350ms ease,
+              transform 250ms ease;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(1){
+  transition-delay: 1400ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(2){
+  transition-delay: 1480ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(3){
+  transition-delay: 1560ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(4){
+  transition-delay: 1640ms;
+}
+
+/* Estilo Del Fondo */
+.Fondo img{
+  position: absolute;
+  top: 0px;
+  left: 0%;
+  width: 100%;
+  height: 535px;
+  filter: brightness(70%);
+}
+
+.textFondo h1{
+  font-weight: 900;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  font-size: 54px;
+  line-height: 150%;
+  letter-spacing: .015em;
+  text-transform: capitalize;
+}
+
+/* Estilo De Las Normas */
+.Normastext h1{
+  font-weight: 800;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  top: 100%;
+  left: 3%;
+  font-size: 35px;
+  line-height: 150%;
+  letter-spacing: .015em;
+  text-transform: capitalize;
+  font-family: var(--anton-regular);
+}
+
+.Normastext p{
+  color: rgb(0, 0, 0);
+  position: absolute;
+  top: 112%;
+  left: 3%;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: .015em;
+  text-transform: capitalize;
+  font-family: var(--barlow-regular);
+}
+.Normastext a{
+  color: rgb(0, 60, 255);
+  font-weight: 900;
+}
+
+.articulo1{
+  position: absolute;
+  top: 160%;
+  left: 3%;
+}
+.articulo1 h1{
+  font-weight: 800;
+  color: rgb(0, 0, 0);
+  font-size: 35px;
+  line-height: 150%;
+  letter-spacing: .015em;
+  text-transform: capitalize;
+  font-family: var(--anton-regular);
+}
+.articulo1 h2{
+  font-weight: 800;
+  color: rgb(0, 0, 0);
+  line-height: 150%;
+  letter-spacing: .015em;
+  text-transform: capitalize;
+  font-family: var(--anton-regular);
+}
+
+.articulo1 p{
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: .015em;
+  text-transform: capitalize;
+  font-family: var(--barlow-regular);
+}
+
+
+
+/* Pie De Pagina */
+.footer-distributed{
+    background-color: #000593;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    height: 40%;
+    text-align: left;
+    font: bold 14px sans-serif;
+    padding: 20px 50px;
+    position: absolute;
+   top: 335%;
+   left: 0%;
+  }
+  
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right{
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .footer-distributed .footer-left{
+    width: 55%;
+  }
+  
+  /* Hipervinculos */
+  .footer-distributed .footer-links{
+    position: absolute;
+    top: 48%;
+    left: 4%;
+    color:  #ffffff;
+    margin: 20px 0 12px;
+    padding: 0;
+  }
+  
+  .footer-distributed .footer-links a{
+    display:inline-block;
+    line-height: 1.8;
+   font-weight:500;
+    text-decoration: none;
+    color:  inherit;
+  }
+  /* Autor */
+  .footer-distributed .footer-company-name{
+    color:  rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    position: absolute;
+    top: 75%;
+    left: 5%;
+  }
+  
+  .footer-distributed .footer-center{
+    width: 35%;
+  }
+  
+  .footer-distributed .footer-center i{
+    background-color: #000593;
+    color: #ffffff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+  }
+  
+  .footer-distributed .footer-center i.fa-envelope{
+    font-size: 17px;
+    line-height: 38px;
+  
+  }
+  /* Datos Empresa */
+  .footer-distributed .footer-center p{
+    display: inline-block;
+    color: rgb(255, 255, 255);
+   font-weight:400;
+    vertical-align: middle;
+    margin:0;
+  }
+  /* Correo Electronico */
+  .footer-distributed .footer-center p span{
+    display:block;
+    font-weight: normal;
+    font-size:14px;
+    line-height:2;
+  }
+  
+  .footer-distributed .footer-center p a{
+    color:  rgb(255, 255, 255);
+    text-decoration: none;;
+  }
+  /* Linea Separadora Del Menu */
+  .footer-distributed .footer-links a:before {
+   content: "|";
+   font-weight:300;
+   font-size: 20px;
+   left: 0;
+   color: rgb(255, 255, 255);
+   display: inline-block;
+   padding-right: 5px;
+  }
+  
+  .footer-distributed .footer-links .link-1:before {
+   content: none;
+  }
+  
+  .footer-distributed .footer-right{
+    width: 20%;
+  }
+  
+  
+  .footer-distributed .footer-icons a{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color:  #ffffff;
+    border-radius: 2px;
+  
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+  
+    margin-right: 3px;
+    margin-bottom: 5px;
+  }
+  
+  .footer-logo img{
+   position: absolute;
+   top: 1%;
+   left: 11%;
+   padding: 1px 3px;
+   font-size: 10px;
+   box-sizing: border-box;
+  }
